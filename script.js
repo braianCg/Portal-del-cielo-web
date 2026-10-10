@@ -1,13 +1,23 @@
 // ===== NAVBAR SCROLL =====
+// Optimization: Throttle scroll event handling with requestAnimationFrame and passive listener
+// to prevent layout thrashing and main-thread scroll blocking on high-refresh-rate displays.
 const navbar = document.getElementById('navbar');
+let isScrolled = false;
+let scrollTicking = false;
 
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 40) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
+  if (!scrollTicking) {
+    requestAnimationFrame(() => {
+      const shouldBeScrolled = window.scrollY > 40;
+      if (shouldBeScrolled !== isScrolled) {
+        isScrolled = shouldBeScrolled;
+        navbar.classList.toggle('scrolled', isScrolled);
+      }
+      scrollTicking = false;
+    });
+    scrollTicking = true;
   }
-});
+}, { passive: true });
 
 // ===== HAMBURGER MENU =====
 const hamburger = document.getElementById('hamburger');
@@ -51,14 +61,33 @@ const revealElements = document.querySelectorAll(
   '.mision-text, .mision-img, .invasion-header, .card, .min-card, .encuentro-item, .primera-vez, .oracion-section .container > *'
 );
 
-revealElements.forEach(el => el.classList.add('reveal'));
+// Optimization: Pre-calculate sibling reveal indices using WeakMap to avoid
+// costly parentElement.querySelectorAll('.reveal') DOM queries inside the IntersectionObserver callback.
+const revealSiblingIndices = new WeakMap();
+const parentRevealGroups = new Map();
+
+revealElements.forEach(el => {
+  el.classList.add('reveal');
+  const parent = el.parentElement;
+  if (parent) {
+    if (!parentRevealGroups.has(parent)) {
+      parentRevealGroups.set(parent, []);
+    }
+    parentRevealGroups.get(parent).push(el);
+  }
+});
+
+parentRevealGroups.forEach(children => {
+  children.forEach((child, idx) => {
+    revealSiblingIndices.set(child, idx);
+  });
+});
 
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      // Stagger siblings slightly
-      const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
-      const idx = siblings.indexOf(entry.target);
+      // Fast index lookup instead of querying parent DOM siblings
+      const idx = revealSiblingIndices.get(entry.target) || 0;
       setTimeout(() => {
         entry.target.classList.add('visible');
       }, idx * 80);
@@ -96,11 +125,21 @@ function handleSubmit(e) {
 const sections = document.querySelectorAll('section[id]');
 const navItems = document.querySelectorAll('.nav-links a');
 
+// Optimization: Pre-map section ID to corresponding nav anchor element to eliminate
+// repeated document.querySelector lookups inside IntersectionObserver callbacks.
+const navLinkMap = new Map();
+navItems.forEach(a => {
+  const href = a.getAttribute('href');
+  if (href && href.startsWith('#')) {
+    navLinkMap.set(href.slice(1), a);
+  }
+});
+
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       navItems.forEach(a => a.style.color = '');
-      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+      const active = navLinkMap.get(entry.target.id);
       if (active) active.style.color = 'var(--text)';
     }
   });
