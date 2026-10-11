@@ -1,0 +1,3 @@
+## 2025-10-11 - Accessible Form Submission and Focus Management
+**Learning:** Standardizing form field associations (`for`/`id`) alongside explicit required fields prevents accessibility barrier issues for screen reader users and keyboard navigation. Setting `role="status"`, `aria-live="polite"`, and `tabindex="-1"` on dynamically displayed success messages allows seamless programmatic focus transfer (`.focus()`), immediately announcing state changes to screen readers and assisting keyboard users.
+**Action:** Always link form labels to controls via `for`/`id`, apply `required` validation, and route focus to dynamically displayed status containers with `role="status"` and `tabindex="-1"`.

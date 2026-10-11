@@ -142,6 +142,7 @@ function handleSubmit(e) {
       form.style.display = 'none';
       success.classList.remove('hidden');
       success.style.animation = 'fadeUp 0.5s ease both';
+      success.focus();
     }, 400);
   }, 1000);
 }

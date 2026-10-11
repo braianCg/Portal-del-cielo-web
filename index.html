@@ -278,21 +278,21 @@
       <form class="oracion-form" onsubmit="handleSubmit(event)">
         <div class="form-row">
           <div class="form-group">
-            <label>Nombre completo</label>
-            <input type="text" placeholder="Tu nombre" />
+            <label for="nombre">Nombre completo</label>
+            <input id="nombre" type="text" placeholder="Tu nombre" required />
           </div>
           <div class="form-group">
-            <label>Correo electrónico</label>
-            <input type="email" placeholder="correo@ejemplo.com" />
+            <label for="email">Correo electrónico</label>
+            <input id="email" type="email" placeholder="correo@ejemplo.com" required />
           </div>
         </div>
         <div class="form-group">
-          <label>Tu petición de oración</label>
-          <textarea placeholder="¿Cómo podemos orar por ti?" rows="4"></textarea>
+          <label for="peticion">Tu petición de oración</label>
+          <textarea id="peticion" placeholder="¿Cómo podemos orar por ti?" rows="4" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-submit">Enviar pedido ➤</button>
       </form>
-      <div id="form-success" class="form-success hidden">¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti.
+      <div id="form-success" class="form-success hidden" role="status" aria-live="polite" tabindex="-1">¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti.
         🙏</div>
     </div>
   </section>
