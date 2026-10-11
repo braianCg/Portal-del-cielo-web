@@ -2,11 +2,11 @@
 const themeToggleBtn = document.getElementById('theme-toggle');
 const htmlElement = document.documentElement;
 
-// Initialize theme from localStorage or system preference
+// Initialize theme from localStorage or system preference securely
 const savedTheme = localStorage.getItem('theme');
 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-if (savedTheme) {
+if (savedTheme === 'light' || savedTheme === 'dark') {
   htmlElement.setAttribute('data-theme', savedTheme);
 } else {
   htmlElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
@@ -128,6 +128,23 @@ function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
   const success = document.getElementById('form-success');
+
+  // Validate form input fields
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  // Trim text inputs and check for whitespace-only entries
+  const textInputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
+  for (const input of textInputs) {
+    input.value = input.value.trim();
+  }
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
   
   const btn = form.querySelector('.btn-submit');
   btn.textContent = 'Enviando...';

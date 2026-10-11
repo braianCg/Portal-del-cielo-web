@@ -275,20 +275,20 @@
       <blockquote>"Donde dos o tres se reúnan en mi nombre, allí estoy yo en medio de ellos." Creemos en el poder de la
         intercesión. Déjanos tu petición especial y nuestra cadena de oración estará clamando por tu necesidad.
       </blockquote>
-      <form class="oracion-form" onsubmit="handleSubmit(event)">
+      <form class="oracion-form" onsubmit="handleSubmit(event)" novalidate>
         <div class="form-row">
           <div class="form-group">
-            <label>Nombre completo</label>
-            <input type="text" placeholder="Tu nombre" />
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required maxlength="100" autocomplete="name" />
           </div>
           <div class="form-group">
-            <label>Correo electrónico</label>
-            <input type="email" placeholder="correo@ejemplo.com" />
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required maxlength="254" autocomplete="email" />
           </div>
         </div>
         <div class="form-group">
-          <label>Tu petición de oración</label>
-          <textarea placeholder="¿Cómo podemos orar por ti?" rows="4"></textarea>
+          <label for="peticion">Tu petición de oración</label>
+          <textarea id="peticion" name="peticion" placeholder="¿Cómo podemos orar por ti?" rows="4" required maxlength="2000"></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-submit">Enviar pedido ➤</button>
       </form>
