@@ -17,12 +17,13 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#" class="nav-logo">Portal del Cielo</a>
-      <ul class="nav-links">
+      <ul class="nav-links" id="nav-links">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#nosotros">Sobre Nosotros</a></li>
         <li><a href="#oracion">Pedidos de oración</a></li>
         <li><a href="#ministerios">Nuestros ministerios</a></li>
         <li><a href="#encuentros">Calendario</a></li>
+        <li class="nav-mobile-cta"><a href="#oracion" class="btn btn-primary nav-cta-mobile">Contáctanos</a></li>
       </ul>
       <div class="nav-actions">
         <a href="#oracion" class="nav-cta">Contáctanos</a>
@@ -35,8 +36,12 @@
             <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.446z"/>
           </svg>
         </button>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="nav-links">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Menú">&#9776;</button>
     </div>
   </nav>
 
