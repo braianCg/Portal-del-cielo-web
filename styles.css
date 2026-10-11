@@ -393,6 +393,25 @@ a { color: inherit; text-decoration: none; }
 .card-icon {
   font-size: 1.6rem;
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  color: var(--accent2);
+}
+
+.card-purple .card-icon {
+  color: var(--gold2);
+}
+
+.svg-icon {
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform var(--transition);
+}
+
+.card:hover .svg-icon,
+.min-card:hover .svg-icon,
+.encuentro-item:hover .svg-icon {
+  transform: scale(1.1);
 }
 
 .card h3 {
@@ -465,8 +484,10 @@ a { color: inherit; text-decoration: none; }
 
 .min-icon {
   font-size: 1.6rem;
-  display: block;
+  display: flex;
+  align-items: center;
   margin-bottom: 14px;
+  color: var(--gold2);
 }
 
 .min-card h4 {
@@ -530,9 +551,9 @@ a { color: inherit; text-decoration: none; }
   flex-shrink: 0;
 }
 
-.enc-blue { background: rgba(59,130,246,0.15); }
-.enc-purple { background: rgba(124,58,237,0.15); }
-.enc-gold { background: rgba(212,160,23,0.15); }
+.enc-blue { background: rgba(59,130,246,0.15); color: #60a5fa; }
+.enc-purple { background: rgba(124,58,237,0.15); color: var(--accent2); }
+.enc-gold { background: rgba(212,160,23,0.15); color: var(--gold2); }
 
 .enc-info { flex: 1; }
 .enc-info h4 { font-size: 0.95rem; margin-bottom: 4px; color: var(--text); }
