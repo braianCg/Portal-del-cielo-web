@@ -1,3 +1,26 @@
+// ===== THEME TOGGLE =====
+const themeToggleBtn = document.getElementById('theme-toggle');
+const htmlElement = document.documentElement;
+
+// Initialize theme from localStorage or system preference
+const savedTheme = localStorage.getItem('theme');
+const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+if (savedTheme) {
+  htmlElement.setAttribute('data-theme', savedTheme);
+} else {
+  htmlElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
+}
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+}
+
 // ===== NAVBAR SCROLL =====
 // Optimization: Throttle scroll event handling with requestAnimationFrame and passive listener
 // to prevent layout thrashing and main-thread scroll blocking on high-refresh-rate displays.
@@ -27,23 +50,25 @@ const navCta = document.querySelector('.nav-cta');
 hamburger.addEventListener('click', () => {
   const isOpen = navLinks.classList.toggle('open');
   if (isOpen) {
+    const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+    const mobileBg = isDark ? 'rgba(7,23,57,0.97)' : 'rgba(255,255,255,0.97)';
     navLinks.style.cssText = `
       display: flex;
       flex-direction: column;
       position: fixed;
       top: 70px; left: 0; right: 0;
-      background: rgba(11,19,41,0.97);
+      background: ${mobileBg};
       backdrop-filter: blur(16px);
       padding: 28px 28px 36px;
       gap: 22px;
-      border-bottom: 1px solid rgba(59,130,246,0.2);
+      border-bottom: 1px solid var(--border);
       z-index: 99;
       animation: fadeDown 0.25s ease;
     `;
-    navCta.style.display = 'none';
+    if (navCta) navCta.style.display = 'none';
   } else {
     navLinks.removeAttribute('style');
-    navCta.removeAttribute('style');
+    if (navCta) navCta.removeAttribute('style');
   }
 });
 
@@ -52,7 +77,7 @@ navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.removeAttribute('style');
     navLinks.classList.remove('open');
-    navCta.removeAttribute('style');
+    if (navCta) navCta.removeAttribute('style');
   });
 });
 
