@@ -4,325 +4,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portal del Cielo Salta</title>
+  <title>Portal del Cielo Salta | Iglesia Cristiana en Salta y Cerrillos</title>
+  <meta name="description" content="Portal del Cielo Salta es un faro de esperanza y transformación espiritual en Salta y Cerrillos. Acompañanos en nuestras reuniones de alabanza, oración y comunidad." />
+  <meta name="keywords" content="Portal del Cielo, Iglesia Cristiana Salta, Cerrillos, fe, esperanza, oración, ministerios, reuniones cristianas Salta" />
+  <meta name="author" content="Portal del Cielo Salta" />
+  <meta name="theme-color" content="#071739" />
+
+  <link rel="canonical" href="https://portaldelcielosalta.com/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://portaldelcielosalta.com/" />
+  <meta property="og:title" content="Portal del Cielo Salta | Iglesia Cristiana" />
+  <meta property="og:description" content="Un portal abierto hacia la presencia de Dios en el corazón de Salta. Conoce nuestros ministerios, horarios de reuniones y envíanos tu pedido de oración." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1601760562234-9814eea6db90?w=1200&q=80" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:site_name" content="Portal del Cielo Salta" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Portal del Cielo Salta | Iglesia Cristiana" />
+  <meta name="twitter:description" content="Un portal abierto hacia la presencia de Dios en el corazón de Salta. Conoce nuestros ministerios y reuniones." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1601760562234-9814eea6db90?w=1200&q=80" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:ital,wght@0,300;0,400;0,600;1,300&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Church",
+      "name": "Portal del Cielo Salta",
+      "url": "https://portaldelcielosalta.com",
+      "logo": "https://images.unsplash.com/photo-1601760562234-9814eea6db90?w=500",
+      "description": "Comunidad e iglesia cristiana en Salta y Cerrillos comprometida con la transformación espiritual y la fe.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Salta",
+        "addressRegion": "Salta",
+        "addressCountry": "AR"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "10:00",
+          "closes": "12:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "18:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Wednesday",
+          "opens": "20:00",
+          "closes": "21:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "18:30",
+          "closes": "20:30"
+        }
+      ],
+      "sameAs": [
+        "https://facebook.com",
+        "https://instagram.com"
+      ]
+    }
+  </script>
 </head>
 
 <body>
-
-  <!-- NAV -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">Portal del Cielo</a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#nosotros">Sobre Nosotros</a></li>
-        <li><a href="#oracion">Pedidos de oración</a></li>
-        <li><a href="#ministerios">Nuestros ministerios</a></li>
-        <li><a href="#encuentros">Calendario</a></li>
-        <li class="nav-mobile-cta"><a href="#oracion" class="btn btn-primary nav-cta-mobile">Contáctanos</a></li>
-      </ul>
-      <div class="nav-actions">
-        <a href="#oracion" class="nav-cta">Contáctanos</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
-          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-          </svg>
-          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.446z"/>
-          </svg>
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="nav-links">
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Bienvenido a</p>
-      <h1>Portal del Cielo<br /><span>Salta</span></h1>
-      <p class="hero-sub"><em>Año de expansión, multiplicación y crecimiento</em></p>
-      <div class="hero-btns">
-        <a href="#encuentros" class="btn btn-primary">Conocer Horarios</a>
-        <a href="#nosotros" class="btn btn-ghost">Nuestra Historia</a>
-      </div>
-    </div>
-    <div class="hero-scroll-indicator">
-      <span></span>
-    </div>
-  </section>
-
-  <!-- MISIÓN -->
-  <section class="mision" id="nosotros">
-    <div class="container two-col">
-      <div class="mision-text">
-        <p class="label">NUESTRA MISIÓN</p>
-        <h2>Un Faro de Esperanza<br />para las naciones</h2>
-        <p>Estamos comprometidos con la transformación espiritual de nuestra ciudad. Portal del Cielo es más que un
-          lugar; es una comunidad vibrante donde cada persona encuentra su centro en el amor incondicional de Dios.</p>
-        <div class="stats">
-          <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Años en Salta</span></div>
-          <div class="stat"><span class="stat-num">1000+</span><span class="stat-label">Vidas alcanzadas</span></div>
-        </div>
-      </div>
-      <div class="mision-img">
-        <div class="img-placeholder stars-bg">
-          <div class="stars-overlay-text">Mirando las Estrellas</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INVASION DEL AMOR -->
-  <section class="invasion">
-    <div class="container">
-      <div class="invasion-header">
-        <h2>Invasión del Amor de Dios</h2>
-        <p>Un movimiento sobrenatural que rompe barreras y lleva el poder sanador de Jesús a cada rincón de nuestra ciudad, a cada barrio y hogar.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="card card-wide card-dark">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
-              <path d="M6 12H4a2 2 0 0 0-2 2v8h20v-8a2 2 0 0 0-2-2h-2"/>
-              <path d="M10 6h4"/>
-              <path d="M10 10h4"/>
-              <path d="M10 14h4"/>
-              <path d="M10 18h4"/>
-            </svg>
-          </div>
-          <h3>Impacto en los Barrios</h3>
-          <p>Llevamos esperanza y transformación a los barrios de Cerrillos y nuestra ciudad.</p>
-        </div>
-        <div class="card card-accent">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-              <polyline points="9 22 9 12 15 12 15 22"/>
-              <path d="M18 4a4 4 0 0 1 4 4"/>
-              <path d="M20 1a7 7 0 0 1 7 7"/>
-            </svg>
-          </div>
-          <h3>Reuniones en la casa y transmisiones</h3>
-          <p>Un lugar de encuentro para todos los hijos de la casa. Transmisiones en vivo de cada reunión.</p>
-        </div>
-        <div class="card card-dark">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-            </svg>
-          </div>
-          <h3>Cadena de Oración</h3>
-          <p>Intercesores las 24hrs por cada petición de oración.</p>
-        </div>
-        <div class="card card-purple card-wide">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.446z" />
-              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-            </svg>
-          </div>
-          <h3>Cierre de Gloria</h3>
-          <p>Testimonios impactantes y milagros que confirman que para Dios nada es imposible.</p>
-          <a href="#" class="link-arrow">Leer testimonios →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MINISTERIOS -->
-  <section class="ministerios" id="ministerios">
-    <div class="container">
-      <div class="ministerios-header">
-        <div>
-          <p class="label">NUESTRA FAMILIA</p>
-          <h2>Ministerios para cada etapa</h2>
-        </div>
-        <p>Encuentra el espacio donde tus talentos y pasión se encuentran con el propósito divino.</p>
-      </div>
-      <div class="ministerios-grid">
-        <div class="min-card">
-          <span class="min-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-            </svg>
-          </span>
-          <h4>Jóvenes Apasionados SOMOS 1</h4>
-          <p>Una generación de jóvenes y adolescentes que vive la pasión y la esperanza de Dios con alegría y pasión.</p>
-        </div>
-        <div class="min-card">
-          <span class="min-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <path d="M9 18V5l12-2v13"/>
-              <circle cx="6" cy="18" r="3"/>
-              <circle cx="18" cy="16" r="3"/>
-            </svg>
-          </span>
-          <h4>Alabanza</h4>
-          <p>Exaltando a Dios y creando una atmósfera profunda de su presencia en cada reunión.</p>
-        </div>
-        <div class="min-card">
-          <span class="min-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </span>
-          <h4>Familias con Propósito</h4>
-          <p>Fortaleciendo el hogar desde los cimientos bíblicos y relacionales para los suyos.</p>
-        </div>
-        <div class="min-card">
-          <span class="min-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
-              <line x1="9" y1="6" x2="16" y2="6"/>
-              <line x1="9" y1="10" x2="16" y2="10"/>
-            </svg>
-          </span>
-          <h4>Escuela de vida</h4>
-          <p>Enseñanza que ancla en la Escritura, formando familias maduras y multiplicadoras.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ENCUENTROS -->
-  <section class="encuentros" id="encuentros">
-    <div class="container">
-      <h2>Nuestros Encuentros</h2>
-      <div class="encuentros-list">
-        <div class="encuentro-item">
-          <span class="enc-icon enc-blue">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-          </span>
-          <div class="enc-info">
-            <h4>Reunión General</h4>
-            <p>Alabanza colectiva, predicación de alabanza y poder.</p>
-          </div>
-          <div class="enc-time">
-            <span class="day">Dom</span>
-            <span class="time">10:00 AM</span>
-            <span class="extra">Y 6:00 PM</span>
-          </div>
-        </div>
-        <div class="encuentro-item">
-          <span class="enc-icon enc-purple">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
-            </svg>
-          </span>
-          <div class="enc-info">
-            <h4>Reunión de Oración</h4>
-            <p>Intercesión y búsqueda profunda del Espíritu Santo.</p>
-          </div>
-          <div class="enc-time">
-            <span class="day">Mié</span>
-            <span class="time">8:00 PM</span>
-            <span class="extra">TODA LA CONGREGACIÓN</span>
-          </div>
-        </div>
-        <div class="encuentro-item">
-          <span class="enc-icon enc-gold">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </span>
-          <div class="enc-info">
-            <h4>Célula de Jóvenes</h4>
-            <p>Comunidad, amistad y crecimiento espiritual.</p>
-          </div>
-          <div class="enc-time">
-            <span class="day">Sáb</span>
-            <span class="time">6:30 PM</span>
-            <span class="extra">AUDITORIO JÓVEN</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="primera-vez">
-        <h3>¿Es tu primera vez?</h3>
-        <p>Queremos que te sientas como en casa desde el primer momento. Contamos con estacionamiento gratuito y un
-          equipo de recepción especial para recibirte.</p>
-        <a href="#oracion" class="link-arrow">Planificar mi visita →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PEDIDO DE ORACIÓN -->
-  <section class="oracion-section" id="oracion">
-    <div class="container">
-      <p class="label">ESTAMOS CONTIGO</p>
-      <h2>Pedido de Oración</h2>
-      <blockquote>"Donde dos o tres se reúnan en mi nombre, allí estoy yo en medio de ellos." Creemos en el poder de la
-        intercesión. Déjanos tu petición especial y nuestra cadena de oración estará clamando por tu necesidad.
-      </blockquote>
-      <form class="oracion-form" onsubmit="handleSubmit(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nombre completo</label>
-            <input type="text" placeholder="Tu nombre" />
-          </div>
-          <div class="form-group">
-            <label>Correo electrónico</label>
-            <input type="email" placeholder="correo@ejemplo.com" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Tu petición de oración</label>
-          <textarea placeholder="¿Cómo podemos orar por ti?" rows="4"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-submit">Enviar pedido ➤</button>
-      </form>
-      <div id="form-success" class="form-success hidden">¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti.
-        🙏</div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <h3>Portal del Cielo</h3>
-        <p><em>"Un portal abierto hacia la presencia de Dios en el corazón de Salta."</em></p>
-        <div class="social-links">
-          <a href="#" aria-label="Facebook">&#xf09a;</a>
-          <a href="#" aria-label="Instagram">&#xf16d;</a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#nosotros">Sobre</a>
-        <a href="#oracion">Oración</a>
-        <a href="#ministerios">Ministerios</a>
-        <a href="#encuentros">Calendario</a>
-        <a href="#oracion">Contáctanos</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 Portal del Cielo Salta. Desarrollado con amor y propósito.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>
