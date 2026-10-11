@@ -32,11 +32,11 @@ hamburger.addEventListener('click', () => {
       flex-direction: column;
       position: fixed;
       top: 70px; left: 0; right: 0;
-      background: rgba(10,10,15,0.97);
+      background: rgba(11,19,41,0.97);
       backdrop-filter: blur(16px);
       padding: 28px 28px 36px;
       gap: 22px;
-      border-bottom: 1px solid rgba(124,58,237,0.18);
+      border-bottom: 1px solid rgba(59,130,246,0.2);
       z-index: 99;
       animation: fadeDown 0.25s ease;
     `;
