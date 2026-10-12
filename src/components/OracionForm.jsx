@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 export const OracionForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const nameInputRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,6 +14,14 @@ export const OracionForm = () => {
       setSubmitting(false);
       setSubmitted(true);
     }, 1000);
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
+    setFormData({ name: '', email: '', message: '' });
+    setTimeout(() => {
+      nameInputRef.current?.focus();
+    }, 50);
   };
 
   return (
@@ -26,12 +35,13 @@ export const OracionForm = () => {
         </blockquote>
 
         {!submitted ? (
-          <form className="oracion-form" onSubmit={handleSubmit}>
+          <form className="oracion-form" onSubmit={handleSubmit} aria-busy={submitting}>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="nombre">Nombre completo</label>
                 <input
                   id="nombre"
+                  ref={nameInputRef}
                   type="text"
                   placeholder="Tu nombre"
                   required
@@ -67,8 +77,16 @@ export const OracionForm = () => {
             </button>
           </form>
         ) : (
-          <div id="form-success" className="form-success">
-            ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
+          <div id="form-success" className="form-success" role="status" aria-live="polite">
+            <p>¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏</p>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              onClick={handleReset}
+              style={{ marginTop: '16px' }}
+            >
+              Enviar otra petición
+            </button>
           </div>
         )}
       </div>
