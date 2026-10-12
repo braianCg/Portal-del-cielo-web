@@ -7,6 +7,16 @@ export const OracionForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Security: Validate and trim user input to prevent empty/whitespace-only submissions and excessive payload processing
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      return;
+    }
+
     setSubmitting(true);
 
     setTimeout(() => {
@@ -30,11 +40,13 @@ export const OracionForm = () => {
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="nombre">Nombre completo</label>
+                {/* Security: Enforce maxLength to mitigate oversized input / client payload DoS */}
                 <input
                   id="nombre"
                   type="text"
                   placeholder="Tu nombre"
                   required
+                  maxLength={100}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
@@ -46,6 +58,7 @@ export const OracionForm = () => {
                   type="email"
                   placeholder="correo@ejemplo.com"
                   required
+                  maxLength={254}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
@@ -58,6 +71,7 @@ export const OracionForm = () => {
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
                 required
+                maxLength={2000}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
