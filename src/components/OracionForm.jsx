@@ -7,6 +7,15 @@ export const OracionForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Sanitize and trim user inputs prior to processing
+    const sanitizedData = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      message: formData.message.trim(),
+    };
+
+    setFormData(sanitizedData);
     setSubmitting(true);
 
     setTimeout(() => {
@@ -35,6 +44,7 @@ export const OracionForm = () => {
                   type="text"
                   placeholder="Tu nombre"
                   required
+                  maxLength={100}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
@@ -46,6 +56,7 @@ export const OracionForm = () => {
                   type="email"
                   placeholder="correo@ejemplo.com"
                   required
+                  maxLength={100}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
@@ -58,6 +69,7 @@ export const OracionForm = () => {
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
                 required
+                maxLength={1000}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
