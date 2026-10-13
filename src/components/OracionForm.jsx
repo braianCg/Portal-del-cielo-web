@@ -52,22 +52,38 @@ export const OracionForm = () => {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="peticion">Tu petición de oración</label>
+              <div className="label-with-counter">
+                <label htmlFor="peticion">Tu petición de oración</label>
+                <span className="char-counter" aria-live="polite">
+                  {formData.message.length}/500
+                </span>
+              </div>
               <textarea
                 id="peticion"
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
+                maxLength={500}
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
             </div>
             <button type="submit" className="btn btn-primary btn-submit" disabled={submitting}>
-              {submitting ? 'Enviando...' : 'Enviar pedido ➤'}
+              {submitting ? (
+                <span className="btn-loading">
+                  <svg className="spinner" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" opacity="0.3"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                  </svg>
+                  Enviando...
+                </span>
+              ) : (
+                'Enviar pedido ➤'
+              )}
             </button>
           </form>
         ) : (
-          <div id="form-success" className="form-success">
+          <div id="form-success" className="form-success" role="status" aria-live="polite">
             ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
           </div>
         )}
