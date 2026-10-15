@@ -5,8 +5,29 @@ export const OracionForm = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  const [error, setError] = useState('');
+
+  // Security: Input validation and length enforcement to prevent DoS/payload injection
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
+
+    const trimmedName = formData.name.trim().slice(0, 100);
+    const trimmedEmail = formData.email.trim().slice(0, 255);
+    const trimmedMessage = formData.message.trim().slice(0, 1000);
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      setError('Por favor completa todos los campos requeridos.');
+      return;
+    }
+
+    // Basic email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      setError('Por favor ingresa un correo electrónico válido.');
+      return;
+    }
+
     setSubmitting(true);
 
     setTimeout(() => {
@@ -35,6 +56,7 @@ export const OracionForm = () => {
                   type="text"
                   placeholder="Tu nombre"
                   required
+                  maxLength={100}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
@@ -46,6 +68,7 @@ export const OracionForm = () => {
                   type="email"
                   placeholder="correo@ejemplo.com"
                   required
+                  maxLength={255}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
@@ -58,10 +81,12 @@ export const OracionForm = () => {
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
                 required
+                maxLength={1000}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
             </div>
+            {error && <p className="form-error" style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</p>}
             <button type="submit" className="btn btn-primary btn-submit" disabled={submitting}>
               {submitting ? 'Enviando...' : 'Enviar pedido ➤'}
             </button>
