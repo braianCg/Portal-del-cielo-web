@@ -4,9 +4,34 @@ export const OracionForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage('');
+
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    // Input validation & sanitization check
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      setErrorMessage('Por favor, completa todos los campos.');
+      return;
+    }
+
+    if (trimmedName.length > 100 || trimmedEmail.length > 100 || trimmedMessage.length > 1000) {
+      setErrorMessage('La longitud de los datos excede el límite permitido.');
+      return;
+    }
+
+    if (!EMAIL_REGEX.test(trimmedEmail)) {
+      setErrorMessage('Por favor, ingresa un correo electrónico válido.');
+      return;
+    }
+
     setSubmitting(true);
 
     setTimeout(() => {
@@ -35,6 +60,7 @@ export const OracionForm = () => {
                   type="text"
                   placeholder="Tu nombre"
                   required
+                  maxLength={100}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
@@ -46,6 +72,7 @@ export const OracionForm = () => {
                   type="email"
                   placeholder="correo@ejemplo.com"
                   required
+                  maxLength={100}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
@@ -58,10 +85,16 @@ export const OracionForm = () => {
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
                 required
+                maxLength={1000}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
             </div>
+            {errorMessage && (
+              <p className="form-error" style={{ color: '#ef4444', fontSize: '0.85rem', textAlign: 'center' }}>
+                {errorMessage}
+              </p>
+            )}
             <button type="submit" className="btn btn-primary btn-submit" disabled={submitting}>
               {submitting ? 'Enviando...' : 'Enviar pedido ➤'}
             </button>
