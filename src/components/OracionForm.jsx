@@ -15,6 +15,11 @@ export const OracionForm = () => {
     }, 1000);
   };
 
+  const handleReset = () => {
+    setFormData({ name: '', email: '', message: '' });
+    setSubmitted(false);
+  };
+
   return (
     <section className="oracion-section" id="oracion">
       <div className="container">
@@ -62,13 +67,26 @@ export const OracionForm = () => {
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary btn-submit" disabled={submitting}>
+            <button
+              type="submit"
+              className="btn btn-primary btn-submit"
+              disabled={submitting}
+              aria-busy={submitting}
+            >
               {submitting ? 'Enviando...' : 'Enviar pedido ➤'}
             </button>
           </form>
         ) : (
-          <div id="form-success" className="form-success">
-            ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
+          <div id="form-success" className="form-success" role="status" aria-live="polite">
+            <p>¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏</p>
+            <button
+              type="button"
+              className="btn btn-ghost"
+              style={{ marginTop: '16px' }}
+              onClick={handleReset}
+            >
+              Enviar otro pedido
+            </button>
           </div>
         )}
       </div>
