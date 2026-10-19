@@ -52,22 +52,33 @@ export const OracionForm = () => {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="peticion">Tu petición de oración</label>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <label htmlFor="peticion">Tu petición de oración</label>
+                <span className="character-count" style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>
+                  {500 - formData.message.length} caracteres restantes
+                </span>
+              </div>
               <textarea
                 id="peticion"
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
+                maxLength={500}
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary btn-submit" disabled={submitting}>
+            <button
+              type="submit"
+              className="btn btn-primary btn-submit"
+              disabled={submitting}
+              aria-busy={submitting}
+            >
               {submitting ? 'Enviando...' : 'Enviar pedido ➤'}
             </button>
           </form>
         ) : (
-          <div id="form-success" className="form-success">
+          <div id="form-success" className="form-success" role="status" aria-live="polite">
             ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
           </div>
         )}
