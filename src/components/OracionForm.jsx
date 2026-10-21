@@ -12,7 +12,12 @@ export const OracionForm = () => {
     setTimeout(() => {
       setSubmitting(false);
       setSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
     }, 1000);
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
   };
 
   return (
@@ -62,13 +67,45 @@ export const OracionForm = () => {
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary btn-submit" disabled={submitting}>
-              {submitting ? 'Enviando...' : 'Enviar pedido ➤'}
+            <button
+              type="submit"
+              className="btn btn-primary btn-submit"
+              disabled={submitting}
+              aria-busy={submitting}
+            >
+              {submitting ? (
+                <span className="btn-loading-content">
+                  <svg
+                    className="spinner"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeDasharray="31.4 31.4"
+                    />
+                  </svg>
+                  Enviando...
+                </span>
+              ) : (
+                'Enviar pedido ➤'
+              )}
             </button>
           </form>
         ) : (
-          <div id="form-success" className="form-success">
-            ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
+          <div id="form-success" className="form-success" role="status" aria-live="polite">
+            <p>¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏</p>
+            <button type="button" className="btn btn-ghost btn-reset" onClick={handleReset}>
+              Enviar otro pedido
+            </button>
           </div>
         )}
       </div>
