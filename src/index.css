@@ -60,6 +60,12 @@
 
 html { scroll-behavior: smooth; }
 
+/* Focus styles for keyboard accessibility */
+:focus-visible {
+  outline: 2px solid var(--gold2);
+  outline-offset: 3px;
+}
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -969,6 +975,15 @@ footer {
 @keyframes scrollPulse {
   0%, 100% { opacity: 0.4; transform: scaleY(1); }
   50%       { opacity: 1; transform: scaleY(1.1); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
 }
 
 .reveal {
