@@ -4,9 +4,30 @@ export const OracionForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMessage('');
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+
+    if (!name || !email || !message) {
+      setErrorMessage('Por favor, completa todos los campos.');
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      setErrorMessage('Por favor, ingresa un correo electrónico válido.');
+      return;
+    }
+
     setSubmitting(true);
 
     setTimeout(() => {
@@ -27,6 +48,11 @@ export const OracionForm = () => {
 
         {!submitted ? (
           <form className="oracion-form" onSubmit={handleSubmit}>
+            {errorMessage && (
+              <div className="form-error" style={{ color: '#ef4444', marginBottom: '1rem', fontSize: '0.9rem' }}>
+                {errorMessage}
+              </div>
+            )}
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="nombre">Nombre completo</label>
@@ -35,6 +61,7 @@ export const OracionForm = () => {
                   type="text"
                   placeholder="Tu nombre"
                   required
+                  maxLength={100}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
@@ -46,6 +73,7 @@ export const OracionForm = () => {
                   type="email"
                   placeholder="correo@ejemplo.com"
                   required
+                  maxLength={254}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
@@ -58,6 +86,7 @@ export const OracionForm = () => {
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
                 required
+                maxLength={2000}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
