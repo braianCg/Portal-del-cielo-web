@@ -62,12 +62,24 @@ export const OracionForm = () => {
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary btn-submit" disabled={submitting}>
-              {submitting ? 'Enviando...' : 'Enviar pedido ➤'}
+            <button
+              type="submit"
+              className="btn btn-primary btn-submit"
+              disabled={submitting}
+              aria-busy={submitting}
+            >
+              {submitting ? (
+                <span className="btn-loading">
+                  <span className="spinner" aria-hidden="true"></span>
+                  Enviando...
+                </span>
+              ) : (
+                'Enviar pedido ➤'
+              )}
             </button>
           </form>
         ) : (
-          <div id="form-success" className="form-success">
+          <div id="form-success" className="form-success" role="status" aria-live="polite">
             ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
           </div>
         )}
