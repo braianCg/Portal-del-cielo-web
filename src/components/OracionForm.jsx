@@ -5,8 +5,27 @@ export const OracionForm = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  const [error, setError] = useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
+
+    // Security: Input validation & sanitization
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      setError('Por favor complete todos los campos obligatorios.');
+      return;
+    }
+
+    if (trimmedName.length > 100 || trimmedEmail.length > 100 || trimmedMessage.length > 2000) {
+      setError('El contenido excede el límite máximo de caracteres permitido.');
+      return;
+    }
+
     setSubmitting(true);
 
     setTimeout(() => {
@@ -27,6 +46,7 @@ export const OracionForm = () => {
 
         {!submitted ? (
           <form className="oracion-form" onSubmit={handleSubmit}>
+            {error && <div className="form-error" style={{ color: '#ef4444', marginBottom: '1rem' }}>{error}</div>}
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="nombre">Nombre completo</label>
@@ -35,6 +55,7 @@ export const OracionForm = () => {
                   type="text"
                   placeholder="Tu nombre"
                   required
+                  maxLength={100}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
@@ -46,6 +67,7 @@ export const OracionForm = () => {
                   type="email"
                   placeholder="correo@ejemplo.com"
                   required
+                  maxLength={100}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
@@ -58,6 +80,7 @@ export const OracionForm = () => {
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
                 required
+                maxLength={2000}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
