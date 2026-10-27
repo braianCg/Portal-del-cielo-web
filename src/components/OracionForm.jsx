@@ -26,10 +26,12 @@ export const OracionForm = () => {
         </blockquote>
 
         {!submitted ? (
-          <form className="oracion-form" onSubmit={handleSubmit}>
+          <form className="oracion-form" onSubmit={handleSubmit} aria-busy={submitting}>
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="nombre">Nombre completo</label>
+                <label htmlFor="nombre">
+                  Nombre completo <span className="required-star" aria-hidden="true">*</span>
+                </label>
                 <input
                   id="nombre"
                   type="text"
@@ -40,7 +42,9 @@ export const OracionForm = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email">Correo electrónico</label>
+                <label htmlFor="email">
+                  Correo electrónico <span className="required-star" aria-hidden="true">*</span>
+                </label>
                 <input
                   id="email"
                   type="email"
@@ -52,7 +56,9 @@ export const OracionForm = () => {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="peticion">Tu petición de oración</label>
+              <label htmlFor="peticion">
+                Tu petición de oración <span className="required-star" aria-hidden="true">*</span>
+              </label>
               <textarea
                 id="peticion"
                 placeholder="¿Cómo podemos orar por ti?"
@@ -67,7 +73,7 @@ export const OracionForm = () => {
             </button>
           </form>
         ) : (
-          <div id="form-success" className="form-success">
+          <div id="form-success" className="form-success" role="status" aria-live="polite">
             ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
           </div>
         )}
