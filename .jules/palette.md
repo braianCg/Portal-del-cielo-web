@@ -1,0 +1,3 @@
+## 2025-05-15 - ARIA Live Region and Form Guidance Pattern
+**Learning:** React state-driven view changes (e.g., swapping a form with a success message) are not automatically announced by screen readers without explicit ARIA live attributes. Pairing `role="status"` + `aria-live="polite"` on success wrappers and associating character counter hints via `aria-describedby` provides immediate screen reader and visual feedback without breaking flow.
+**Action:** Always add `role="status"` and `aria-live="polite"` to conditional success status containers, and set `aria-describedby` on limited inputs with character counters.
