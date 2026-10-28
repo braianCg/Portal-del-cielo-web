@@ -2,11 +2,35 @@ import React, { useState } from 'react';
 
 export const OracionForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // Basic RFC 5322 compliant regex for email validation
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
+
+    // Input sanitization and validation
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      setError('Por favor completa todos los campos.');
+      return;
+    }
+
+    if (!isValidEmail(trimmedEmail)) {
+      setError('Por favor ingresa un correo electrónico válido.');
+      return;
+    }
+
     setSubmitting(true);
 
     setTimeout(() => {
@@ -27,6 +51,11 @@ export const OracionForm = () => {
 
         {!submitted ? (
           <form className="oracion-form" onSubmit={handleSubmit}>
+            {error && (
+              <div style={{ color: '#ff6b6b', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center' }} role="alert">
+                {error}
+              </div>
+            )}
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="nombre">Nombre completo</label>
