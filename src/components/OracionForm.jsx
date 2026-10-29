@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 export const OracionForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const successRef = useRef(null);
+
+  useEffect(() => {
+    if (submitted && successRef.current) {
+      successRef.current.focus();
+    }
+  }, [submitted]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,12 +69,34 @@ export const OracionForm = () => {
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary btn-submit" disabled={submitting}>
-              {submitting ? 'Enviando...' : 'Enviar pedido ➤'}
+            <button
+              type="submit"
+              className="btn btn-primary btn-submit"
+              disabled={submitting}
+              aria-busy={submitting}
+            >
+              {submitting ? (
+                <span className="btn-loading-state">
+                  <svg className="spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" strokeOpacity="0.25" />
+                    <path d="M12 2 a10 10 0 0 1 10 10" strokeLinecap="round" />
+                  </svg>
+                  Enviando...
+                </span>
+              ) : (
+                'Enviar pedido ➤'
+              )}
             </button>
           </form>
         ) : (
-          <div id="form-success" className="form-success">
+          <div
+            id="form-success"
+            className="form-success"
+            ref={successRef}
+            tabIndex={-1}
+            role="status"
+            aria-live="polite"
+          >
             ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
           </div>
         )}
