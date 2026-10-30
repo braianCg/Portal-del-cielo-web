@@ -90,16 +90,31 @@ export const OracionForm = () => {
                 rows={4}
                 required
                 maxLength={MAX_MESSAGE_LENGTH}
+                aria-describedby="peticion-char-count"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
+              <div className="form-group-footer">
+                <span id="peticion-char-count" className="char-counter">
+                  {formData.message.length} / {MAX_MESSAGE_LENGTH} caracteres
+                </span>
+              </div>
             </div>
-            <button type="submit" className="btn btn-primary btn-submit" disabled={submitting}>
-              {submitting ? 'Enviando...' : 'Enviar pedido ➤'}
+            <button type="submit" className="btn btn-primary btn-submit" disabled={submitting} aria-busy={submitting}>
+              {submitting ? (
+                <span className="btn-loading-content">
+                  <svg className="btn-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                  </svg>
+                  Enviando...
+                </span>
+              ) : (
+                'Enviar pedido ➤'
+              )}
             </button>
           </form>
         ) : (
-          <div id="form-success" className="form-success">
+          <div id="form-success" className="form-success" role="status" aria-live="polite">
             ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
           </div>
         )}
