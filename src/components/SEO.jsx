@@ -87,6 +87,8 @@ export const SEO = () => {
       <meta name="description" content={description} />
       <meta name="keywords" content="Portal del Cielo, Iglesia Salta, Iglesia Cristiana Salta, Oración, Ministerios, Invasión del Amor de Dios, Cerrillos, Fe Salta" />
       <meta name="robots" content="index, follow" />
+      <meta httpEquiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self';" />
+      <meta name="referrer" content="strict-origin-when-cross-origin" />
       <link rel="canonical" href={siteUrl} />
 
       {/* Open Graph / Facebook */}
