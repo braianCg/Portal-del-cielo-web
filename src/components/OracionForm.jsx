@@ -1,12 +1,40 @@
 import React, { useState } from 'react';
 
+// SECURITY: Enforce maximum input length limits and validation on user input
+// to prevent Denial of Service (DoS), payload overflow, and malformed submissions.
+const MAX_NAME_LENGTH = 100;
+const MAX_EMAIL_LENGTH = 254;
+const MAX_MESSAGE_LENGTH = 2000;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export const OracionForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError('');
+
+    // Sanitize input values by trimming leading/trailing whitespace
+    const cleanName = formData.name.trim();
+    const cleanEmail = formData.email.trim();
+    const cleanMessage = formData.message.trim();
+
+    if (!cleanName || cleanName.length > MAX_NAME_LENGTH) {
+      setError('Por favor, ingresa un nombre válido.');
+      return;
+    }
+    if (!cleanEmail || cleanEmail.length > MAX_EMAIL_LENGTH || !EMAIL_REGEX.test(cleanEmail)) {
+      setError('Por favor, ingresa un correo electrónico válido.');
+      return;
+    }
+    if (!cleanMessage || cleanMessage.length > MAX_MESSAGE_LENGTH) {
+      setError('Por favor, ingresa tu petición de oración.');
+      return;
+    }
+
     setSubmitting(true);
 
     setTimeout(() => {
@@ -27,6 +55,7 @@ export const OracionForm = () => {
 
         {!submitted ? (
           <form className="oracion-form" onSubmit={handleSubmit}>
+            {error && <div className="form-error" role="alert" style={{ color: '#ef4444', marginBottom: '1rem' }}>{error}</div>}
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="nombre">Nombre completo</label>
@@ -35,6 +64,7 @@ export const OracionForm = () => {
                   type="text"
                   placeholder="Tu nombre"
                   required
+                  maxLength={MAX_NAME_LENGTH}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
@@ -46,6 +76,7 @@ export const OracionForm = () => {
                   type="email"
                   placeholder="correo@ejemplo.com"
                   required
+                  maxLength={MAX_EMAIL_LENGTH}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
@@ -58,6 +89,7 @@ export const OracionForm = () => {
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
                 required
+                maxLength={MAX_MESSAGE_LENGTH}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
