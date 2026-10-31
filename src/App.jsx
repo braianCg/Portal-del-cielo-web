@@ -17,8 +17,11 @@ function MainContent() {
   return (
     <>
       <SEO />
+      <a href="#main-content" className="skip-link">
+        Saltar al contenido principal
+      </a>
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex="-1">
         <Hero />
         <Mision />
         <Invasion />
