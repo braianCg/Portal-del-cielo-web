@@ -3,10 +3,12 @@ const themeToggleBtn = document.getElementById('theme-toggle');
 const htmlElement = document.documentElement;
 
 // Initialize theme from localStorage or system preference
+// SECURITY: Validate untrusted localStorage data against allowed whitelist
+// to prevent unexpected DOM attribute injection or corrupted UI state.
 const savedTheme = localStorage.getItem('theme');
 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-if (savedTheme) {
+if (savedTheme === 'light' || savedTheme === 'dark') {
   htmlElement.setAttribute('data-theme', savedTheme);
 } else {
   htmlElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
