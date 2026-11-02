@@ -1,0 +1,5 @@
+# Palette's Journal - Critical UX & Accessibility Learnings
+
+## 2024-11-02 - Skip to Content & Fixed Header Navigation Pattern
+**Learning:** In single-page websites with sticky/fixed transparent glassmorphism navigation bars, screen reader and keyboard navigation users are forced to tab through repeated nav items (links, theme toggles, CTAs) before reaching main content. Standard utility classes (`sr-only` + `focus:not-sr-only`) paired with `z-50` and CSS custom property theme colors (`var(--bg-primary)`, `var(--gold)`) provide an accessible, high-contrast, theme-aware bypass without altering standard visual design for pointer users. Adding `id="main-content"` with `tabindex="-1"` and removing outline on program focus ensures smooth keyboard jump to the main content area without jarring focus rings on non-interactive containers.
+**Action:** Always provide a high-contrast `#main-content` skip link as the very first focusable child in `App` when implementing sticky or fixed navbar layouts.
