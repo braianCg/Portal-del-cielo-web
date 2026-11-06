@@ -43,6 +43,14 @@ export const OracionForm = () => {
     }, 1000);
   };
 
+  const handleReset = () => {
+    setFormData({ name: '', email: '', message: '' });
+    setError('');
+    setSubmitted(false);
+  };
+
+  const remainingChars = MAX_MESSAGE_LENGTH - formData.message.length;
+
   return (
     <section className="oracion-section" id="oracion">
       <div className="container">
@@ -83,13 +91,24 @@ export const OracionForm = () => {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="peticion">Tu petición de oración</label>
+              <div className="form-label-row">
+                <label htmlFor="peticion">Tu petición de oración</label>
+                <span
+                  id="peticion-counter"
+                  className="char-counter"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+                  {remainingChars} {remainingChars === 1 ? 'carácter restante' : 'caracteres restantes'}
+                </span>
+              </div>
               <textarea
                 id="peticion"
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
                 required
                 maxLength={MAX_MESSAGE_LENGTH}
+                aria-describedby="peticion-counter"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
@@ -100,7 +119,14 @@ export const OracionForm = () => {
           </form>
         ) : (
           <div id="form-success" className="form-success">
-            ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
+            <p>¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏</p>
+            <button
+              type="button"
+              className="btn btn-ghost btn-reset"
+              onClick={handleReset}
+            >
+              Enviar otra petición
+            </button>
           </div>
         )}
       </div>
