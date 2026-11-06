@@ -820,6 +820,20 @@ a { color: inherit; text-decoration: none; }
   gap: 7px;
 }
 
+.form-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.char-counter {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
 .form-group label {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
@@ -862,13 +876,32 @@ a { color: inherit; text-decoration: none; }
 
 .form-success {
   text-align: center;
-  padding: 20px;
+  padding: 24px 20px;
   background: var(--accent-soft);
   border: 1px solid var(--gold2);
   border-radius: 10px;
   color: var(--gold2);
   font-weight: 600;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-reset {
+  padding: 10px 24px;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+/* Accessible Keyboard Focus Indicators */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold2);
+  outline-offset: 3px;
 }
 
 /* ===== FOOTER ===== */
