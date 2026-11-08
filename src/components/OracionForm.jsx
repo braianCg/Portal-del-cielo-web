@@ -90,9 +90,22 @@ export const OracionForm = () => {
                 rows={4}
                 required
                 maxLength={MAX_MESSAGE_LENGTH}
+                aria-describedby="peticion-counter"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
+              <div
+                id="peticion-counter"
+                aria-live="polite"
+                style={{
+                  fontSize: '0.75rem',
+                  color: 'var(--text-dim)',
+                  textAlign: 'right',
+                  marginTop: '4px'
+                }}
+              >
+                {formData.message.length} / {MAX_MESSAGE_LENGTH} caracteres
+              </div>
             </div>
             <button type="submit" className="btn btn-primary btn-submit" disabled={submitting}>
               {submitting ? 'Enviando...' : 'Enviar pedido ➤'}
