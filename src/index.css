@@ -820,12 +820,24 @@ a { color: inherit; text-decoration: none; }
   gap: 7px;
 }
 
+.form-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .form-group label {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
   font-weight: 600;
+}
+
+.char-counter {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
 }
 
 .form-group input,
@@ -860,15 +872,43 @@ a { color: inherit; text-decoration: none; }
   border: none;
 }
 
+.btn-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .form-success {
   text-align: center;
-  padding: 20px;
+  padding: 24px 20px;
   background: var(--accent-soft);
   border: 1px solid var(--gold2);
   border-radius: 10px;
   color: var(--gold2);
   font-weight: 600;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-reset-success {
+  background: transparent;
+  border: 1px solid var(--gold2);
+  color: var(--gold2);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-reset-success:hover {
+  background: var(--gold2);
+  color: var(--cta-text-color);
 }
 
 /* ===== FOOTER ===== */

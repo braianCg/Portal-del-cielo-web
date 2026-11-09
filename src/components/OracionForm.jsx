@@ -83,13 +83,19 @@ export const OracionForm = () => {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="peticion">Tu petición de oración</label>
+              <div className="form-label-row">
+                <label htmlFor="peticion">Tu petición de oración</label>
+                <span id="peticion-counter" className="char-counter" aria-live="polite">
+                  {formData.message.length} / {MAX_MESSAGE_LENGTH}
+                </span>
+              </div>
               <textarea
                 id="peticion"
                 placeholder="¿Cómo podemos orar por ti?"
                 rows={4}
                 required
                 maxLength={MAX_MESSAGE_LENGTH}
+                aria-describedby="peticion-counter"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               ></textarea>
@@ -100,7 +106,17 @@ export const OracionForm = () => {
           </form>
         ) : (
           <div id="form-success" className="form-success">
-            ¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏
+            <p>¡Gracias! Tu pedido ha sido recibido. Estaremos orando por ti. 🙏</p>
+            <button
+              type="button"
+              className="btn-reset-success"
+              onClick={() => {
+                setFormData({ name: '', email: '', message: '' });
+                setSubmitted(false);
+              }}
+            >
+              Enviar otra petición
+            </button>
           </div>
         )}
       </div>
